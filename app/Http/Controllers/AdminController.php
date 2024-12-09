@@ -9,7 +9,9 @@ use App\Models\Category;
 class AdminController extends Controller
 {
     public function view_category(){
-        return view('admin.category');
+        $data = Category::all();
+
+        return view('admin.category', compact('data'));
     }
 
     public function add_category(Request $request){
@@ -20,7 +22,7 @@ class AdminController extends Controller
 
         $category->save();
 
-        //toastr()->addSuccess('Category added successfuly');
+        toastr()->timeOut(3000)->closeButton()->addSuccess('Category added successfuly');
 
         return redirect()->back();
     }
